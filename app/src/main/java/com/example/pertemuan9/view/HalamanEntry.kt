@@ -24,6 +24,12 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.pertemuan9.R
+import com.example.pertemuan9.view.route.DestinasiEntry
+import com.example.pertemuan9.viewmodel.DetailSiswa
+import com.example.pertemuan9.viewmodel.EntryViewModel
+import com.example.pertemuan9.viewmodel.UIStateSiswa
+import com.example.pertemuan9.viewmodel.provider.PenyediaViewModel
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,7 +52,7 @@ fun EntrySiswaScreen(
         }) { innerPadding ->
         EntrySiswaBody(
             uiStateSiswa = viewModel.uiStateSiswa,
-            onSiswaValueChange = viewModel::updateUiState,
+            onSiswaValueChange = viewModel::updateUIState,
             onSaveClick = {
                 coroutineScope.launch {
                     viewModel.saveSiswa()
@@ -117,8 +123,8 @@ fun FormInputSiswa(
             singleLine = true
         )
         OutlinedTextField(
-            value = detailSiswa.telpon,
-            onValueChange = {onValueChange(detailSiswa.copy(telpon = it))},
+            value = detailSiswa.telepon,
+            onValueChange = {onValueChange(detailSiswa.copy(telepon = it))},
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             label = { Text(text = stringResource(R.string.telpon)) },
             modifier = Modifier.fillMaxWidth(),
